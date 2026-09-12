@@ -27,9 +27,10 @@ export default function Navbar() {
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-10">
-        <Link className="group flex items-baseline gap-1" to="/">
-          <span className="font-display text-xl font-extrabold tracking-tight text-[#F5F5F5]">ANTI.AI</span>
-          <span className="h-1.5 w-1.5 rounded-full bg-[#D62828] transition-transform duration-300 group-hover:scale-150" />
+        <Link className="group flex items-baseline" to="/">
+          <span className="font-display text-xl font-extrabold tracking-tight text-[#F5F5F5]">
+            ANTI<span className="inline-block text-[#D62828] transition-transform duration-300 group-hover:scale-150">.</span>AI
+          </span>
         </Link>
         <nav className="hidden items-center gap-8 lg:flex">
           {links.map((l) => (
