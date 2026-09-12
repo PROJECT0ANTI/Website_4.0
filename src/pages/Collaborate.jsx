@@ -47,11 +47,6 @@ export default function Collaborate() {
             className="mt-10 font-display text-5xl font-extrabold uppercase leading-[0.95] tracking-tight text-[#F5F5F5] sm:text-6xl lg:text-8xl"
             lines={['START THE', 'TRANSMISSION.']}
           />
-          <Reveal delay={0.15} className="mt-10 max-w-2xl">
-            <p className="text-base italic leading-relaxed text-[#9E9E9E] sm:text-lg">
-              "Hello Team ANTI-AI, my name is ___ and I work in ___. Also, here's my brief: ___."
-            </p>
-          </Reveal>
         </div>
       </section>
 
