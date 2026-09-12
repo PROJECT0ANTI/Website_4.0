@@ -11,12 +11,19 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   background: var(--ink);
   color: var(--paper);
   font-family: "Space Grotesk", sans-serif;
+  overflow-x: hidden;
+}
+
+/* Defensive wrapping: never let a long word/number force horizontal scroll on small screens */
+h1, h2, h3, h4, p, span, li, div {
+  overflow-wrap: break-word;
 }
 
 .font-display {

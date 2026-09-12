@@ -100,10 +100,10 @@ export default function Home() {
       {/* STATS */}
       <section className="mx-auto max-w-7xl px-6 py-28 lg:px-10">
         <SectionLabel index="01" text="Our Strength" />
-        <div className="mt-14 grid grid-cols-2 gap-px bg-white/[0.06] lg:grid-cols-4">
+        <div className="mt-14 grid grid-cols-1 gap-px bg-white/[0.06] sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((s, i) => (
-            <Reveal key={s.label} delay={i * 0.06} className="bg-[#0A0A0A] p-10">
-              <div className="font-display text-5xl font-extrabold tracking-tight text-[#F5F5F5] lg:text-6xl">{s.value}</div>
+            <Reveal key={s.label} delay={i * 0.06} className="bg-[#0A0A0A] p-6 sm:p-10">
+              <div className="font-display text-4xl font-extrabold tracking-tight text-[#F5F5F5] sm:text-5xl lg:text-6xl">{s.value}</div>
               <div className="mt-3 font-mono-tech text-[11px] uppercase tracking-[0.22em] text-[#9E9E9E]">{s.label}</div>
             </Reveal>
           ))}

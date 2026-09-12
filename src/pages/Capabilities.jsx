@@ -75,7 +75,7 @@ export default function Capabilities() {
           </Reveal>
           <RevealLines
             tag="h1"
-            className="mt-10 font-display text-5xl font-extrabold uppercase leading-[0.95] tracking-tight text-[#F5F5F5] sm:text-6xl lg:text-8xl"
+            className="mt-10 font-display text-3xl font-extrabold uppercase leading-[0.95] tracking-tight text-[#F5F5F5] sm:text-6xl lg:text-8xl"
             lines={[
               'WHERE STRATEGY',
               <>
@@ -108,9 +108,9 @@ export default function Capabilities() {
                 <p className="mt-4 text-sm leading-relaxed text-[#9E9E9E]">{s.desc}</p>
                 <ul className="mt-8 space-y-2.5">
                   {s.points.map((p) => (
-                    <li key={p} className="flex items-center gap-3 text-sm text-[#EDEDED]/80">
-                      <span className="h-1 w-1 rotate-45 bg-[#D62828]" />
-                      {p}
+                    <li key={p} className="flex items-start gap-3 text-sm text-[#EDEDED]/80">
+                      <span className="mt-2 h-1 w-1 shrink-0 rotate-45 bg-[#D62828]" />
+                      <span className="min-w-0">{p}</span>
                     </li>
                   ))}
                 </ul>
