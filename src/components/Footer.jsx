@@ -40,10 +40,10 @@ const LinkedIn = () => (
 )
 
 const socials = [
-  { icon: Instagram, label: 'Instagram' },
-  { icon: Threads, label: 'Threads' },
-  { icon: YouTube, label: 'YouTube' },
-  { icon: LinkedIn, label: 'LinkedIn' },
+  { icon: Instagram, label: 'Instagram', href: 'https://www.instagram.com/antiaishield?igsh=MTY2aGkxdjRiOWhvMA==' },
+  { icon: Threads, label: 'Threads', href: 'https://www.threads.com/@antiaishield?igshid=NTc4MTIwNjQ2YQ==' },
+  { icon: YouTube, label: 'YouTube', href: 'https://youtube.com/@anti.ai_15?si=trudg-TXKz21JPv-' },
+  { icon: LinkedIn, label: 'LinkedIn', href: 'https://www.linkedin.com/company/anti-ai/' },
 ]
 
 const nav = [
@@ -69,10 +69,12 @@ export default function Footer() {
               auditable, aligned with real-world accountability.
             </p>
             <div className="mt-8 flex gap-4">
-              {socials.map(({ icon: Icon, label }) => (
+              {socials.map(({ icon: Icon, label, href }) => (
                 <a
                   key={label}
-                  href="#"
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={label}
                   className="flex h-10 w-10 items-center justify-center border border-white/10 text-[#9E9E9E] transition-colors duration-300 hover:border-[#D62828] hover:text-[#D62828]"
                 >
