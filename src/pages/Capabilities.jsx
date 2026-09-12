@@ -37,7 +37,7 @@ const services = [
     index: 'S.04',
     title: 'Cloud Infrastructure Development',
     desc: 'Resilient, governed infrastructure that protects modern cloud environments before attacks occur.',
-    points: ['Threat forecasting', 'Compliance-first architecture', '99.2%+ uptime engineering', 'SOC-2 readiness'],
+    points: ['Threat forecasting', 'Compliance-first architecture', '99.9%+ uptime engineering', 'SOC-2 readiness'],
   },
 ]
 

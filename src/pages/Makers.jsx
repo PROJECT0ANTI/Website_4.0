@@ -4,13 +4,13 @@ import Reveal, { RevealLines } from '../components/Reveal.jsx'
 import SectionLabel from '../components/SectionLabel.jsx'
 
 const leadership = [
-  { initials: 'TS', name: 'Tanishq Sharma', role: 'Founder & CEO' },
-  { initials: 'DS', name: 'Divya Sharma', role: 'Chief Manager' },
-  { initials: 'SP', name: 'Sharad Pandey', role: 'Director of Sales-Presales GPS' },
-  { initials: 'AD', name: 'Arpit Dogra', role: 'Chief Technical Officer' },
-  { initials: 'KS', name: 'Kunal Saxena', role: 'Technical Lead' },
-  { initials: 'VP', name: 'Vishal Purohit', role: 'Head of Marketing' },
-  { initials: 'SS', name: 'Shristi Shukla', role: 'Senior Software Developer' },
+  { initials: 'TS', name: 'Tanishq Sharma', role: 'Founder & CEO', link: 'https://www.linkedin.com/in/tanishq-shr' },
+  { initials: 'DS', name: 'Divya Sharma', role: 'Chief Manager', link: 'https://www.linkedin.com/in/divya-sharma-7297822aa' },
+  { initials: 'SP', name: 'Sharad Pandey', role: 'Director of Sales-Presales, Global Presales Solutions', link: 'https://www.linkedin.com/in/sharad-pandey-114825152' },
+  { initials: 'AD', name: 'Arpit Dogra', role: 'Chief Technical Officer', link: 'https://www.linkedin.com/in/arpit-dogra18' },
+  { initials: 'KS', name: 'Kunal Saxena', role: 'Technical Lead', link: 'https://www.linkedin.com/in/kunal-saxena-ks' },
+  { initials: 'VP', name: 'Vishal Purohit', role: 'Head of Marketing', link: 'https://www.linkedin.com/in/vishal-purohit-35338b218' },
+  { initials: 'SS', name: 'Shristi Shukla', role: 'Senior Software Developer', link: 'https://x.com/session_timeout' },
 ]
 
 const ethos = [
@@ -49,7 +49,15 @@ export default function Makers() {
           <SectionLabel index="01" text="Core Leadership" />
           <div className="mt-14 grid gap-px bg-white/[0.06] sm:grid-cols-2 lg:grid-cols-4">
             {leadership.map((m, i) => (
-              <Reveal key={m.name} delay={i * 0.05} className="trace-card group bg-[#0A0A0A] p-8">
+              <Reveal
+                key={m.name}
+                delay={i * 0.05}
+                as="a"
+                href={m.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="trace-card group block bg-[#0A0A0A] p-8 transition-colors duration-300 hover:bg-[#141414]"
+              >
                 <div className="flex h-14 w-14 items-center justify-center border border-[#D62828]/40 font-display text-lg font-bold text-[#D62828]">
                   {m.initials}
                 </div>
@@ -57,6 +65,7 @@ export default function Makers() {
                 <div className="mt-2 font-mono-tech text-[10px] uppercase tracking-[0.18em] text-[#9E9E9E]">{m.role}</div>
               </Reveal>
             ))}
+            <div aria-hidden="true" className="hidden bg-[#0A0A0A] lg:block" />
           </div>
           <Reveal delay={0.2} className="mt-16 text-center">
             <Link

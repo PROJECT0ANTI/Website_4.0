@@ -52,7 +52,7 @@ const nav = [
   { to: '/story', label: 'Our Story' },
   { to: '/makers', label: 'The Makers' },
   { to: '/careers', label: 'New Chapters' },
-  { to: '/collaborate', label: 'Collaborate' },
+  { to: '/collaborate', label: 'Initiate Protocol' },
 ]
 
 export default function Footer() {
