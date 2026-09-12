@@ -15,7 +15,7 @@ const chapters = [
   {
     ch: 'CH.01',
     title: 'Our Vision',
-    body: 'At ANTI.AI, our vision is to redefine technology, defense mechanisms and development through Anti AI Softwares that work for the betterment of mankind.',
+    body: 'At ANTI.AI, our vision is to redefine technology, defence mechanisms, and development through Anti AI software that works for the betterment of mankind.',
   },
   {
     ch: 'CH.02',
@@ -102,12 +102,12 @@ export default function Story() {
               </h2>
               <p className="mt-6 max-w-2xl text-sm leading-relaxed text-[#9E9E9E] sm:text-base">
                 Anti AI was founded with a clear mission: to address the risks posed by rapidly advancing
-                artificial intelligence before they evolve into systemic threats. What began as a research driven
-                initiative has grown into a platform led effort spanning AI safety, enterprise security, and
+                artificial intelligence before they evolve into systemic threats. What began as a research-driven
+                initiative has grown into a platform-led effort spanning AI safety, enterprise security, and
                 infrastructure resilience.
               </p>
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#9E9E9E] sm:text-base">
-                Our work today sits at the intersection of advanced research, real world deployment, and long term
+                Our work today sits at the intersection of advanced research, real-world deployment, and long-term
                 governance.
               </p>
             </Reveal>

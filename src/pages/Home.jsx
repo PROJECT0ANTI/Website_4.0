@@ -82,7 +82,7 @@ export default function Home() {
               <ArrowUpRight size={15} className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
             </Link>
             <Link className="link-sweep font-mono-tech text-xs uppercase tracking-[0.22em] text-[#EDEDED]" to="/collaborate">
-              Collaborate ?
+              Initiate Protocol
             </Link>
           </Reveal>
         </div>

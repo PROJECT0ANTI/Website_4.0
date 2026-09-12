@@ -8,7 +8,7 @@ const services = [
     icon: Cpu,
     index: 'S.01',
     title: 'AI Product Development',
-    desc: 'We design and build AI powered products with a strong focus on speed, clarity, and real world impact, from MVP to production ready systems.',
+    desc: 'We design and build AI-powered products with a strong focus on speed, clarity, and real-world impact, from MVP to production-ready systems.',
     points: [
       'Rapid prototyping & MVP development',
       'Model selection, fine tuning & evaluation',
@@ -42,9 +42,9 @@ const services = [
 ]
 
 const reasons = [
-  { icon: Zap, title: 'AI Driven Development', desc: 'We use AI internally across design, development, and testing to accelerate delivery while maintaining precision.' },
+  { icon: Zap, title: 'AI-Driven Development', desc: 'We use AI internally across design, development, and testing to accelerate delivery while maintaining precision.' },
   { icon: Gauge, title: 'Faster Project Turnaround', desc: 'Optimized workflows and parallel execution deliver in significantly shorter timelines without cutting corners.' },
-  { icon: BadgeDollarSign, title: 'Best Pricing in the Market', desc: 'Lean operations and AI assisted execution let us offer premium output at highly competitive pricing.' },
+  { icon: BadgeDollarSign, title: 'Best Pricing in the Market', desc: 'Lean operations and AI-assisted execution let us offer premium output at highly competitive pricing.' },
   { icon: Eye, title: 'Transparent Development', desc: 'Full visibility into progress, decisions, and technical direction. No black boxes, ever.' },
 ]
 
@@ -53,14 +53,14 @@ const process = [
   { step: '02', title: 'Strategy & Planning', desc: 'Clear technical and product strategy — architecture, timelines, milestones, and success metrics aligned with business goals.' },
   { step: '03', title: 'Design & Prototyping', desc: 'Rapid prototypes and system designs validate ideas early, reduce risk, and ensure clarity before full scale development.' },
   { step: '04', title: 'Development & Testing', desc: 'Iterative cycles with continuous testing — performance, security, and scalability baked in from the start.' },
-  { step: '05', title: 'Launch & Optimization', desc: 'Deployed with monitoring and analytics in place, followed by performance tuning and real world optimizations.' },
+  { step: '05', title: 'Launch & Optimization', desc: 'Deployed with monitoring and analytics in place, followed by performance tuning and real-world optimizations.' },
   { step: '06', title: 'Support & Growth', desc: 'Ongoing support, improvements, and scaling strategies as the product and user base grow.' },
 ]
 
 const portfolio = [
-  { title: 'E-Commerce Platform', desc: 'In-house CTF based commerce system with secure workflows, high performance APIs, and real time monitoring to handle scale without compromise.' },
-  { title: 'SaaS Dashboards', desc: 'Internal sales intelligence and HR dashboards designed for visibility, decision making, and operational clarity across teams.' },
-  { title: 'Deepfake Detection App', desc: 'A mobile application leveraging AI models to detect manipulated media, built for accuracy, speed, and real world usability.' },
+  { title: 'E-Commerce Platform', desc: 'In-house commerce system with secure workflows, high-performance APIs, and real-time monitoring to handle scale without compromise.' },
+  { title: 'SaaS Dashboards', desc: 'Internal sales intelligence and HR dashboards designed for visibility, decision-making, and operational clarity across teams.' },
+  { title: 'Deepfake Detection App', desc: 'A mobile application leveraging AI models to detect manipulated media, built for accuracy, speed, and real-world usability.' },
 ]
 
 export default function Capabilities() {
