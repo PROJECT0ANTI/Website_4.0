@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { HandCoins, Feather, Palmtree, Globe2, ArrowUpRight } from 'lucide-react'
 import Reveal, { RevealLines } from '../components/Reveal.jsx'
 import SectionLabel from '../components/SectionLabel.jsx'
@@ -35,7 +36,7 @@ export default function Careers() {
     let active = true
     supabase
       .from('jobs')
-      .select('title, department, location, description')
+      .select('id, title, department, location, description')
       .eq('is_active', true)
       .order('created_at', { ascending: false })
       .then(({ data, error }) => {
@@ -43,6 +44,7 @@ export default function Careers() {
         if (!error && data && data.length > 0) {
           setPositions(
             data.map((j) => ({
+              id: j.id,
               title: j.title,
               category: j.department || 'Operations',
               location: j.location || 'Remote',
@@ -119,12 +121,21 @@ export default function Careers() {
                       <span>{p.location}</span>
                     </div>
                   </div>
-                  <a
-                    href="mailto:antiai.hr@gmail.com"
-                    className="link-sweep shrink-0 font-mono-tech text-[11px] uppercase tracking-[0.22em] text-[#EDEDED]"
-                  >
-                    Apply
-                  </a>
+                  {p.id ? (
+                    <Link
+                      to={`/apply/${p.id}`}
+                      className="link-sweep shrink-0 font-mono-tech text-[11px] uppercase tracking-[0.22em] text-[#EDEDED]"
+                    >
+                      Apply
+                    </Link>
+                  ) : (
+                    <a
+                      href="mailto:antiai.hr@gmail.com"
+                      className="link-sweep shrink-0 font-mono-tech text-[11px] uppercase tracking-[0.22em] text-[#EDEDED]"
+                    >
+                      Apply
+                    </a>
+                  )}
                 </div>
               </Reveal>
             ))}

@@ -11,6 +11,7 @@ import Collaborate from './pages/Collaborate.jsx'
 import Privacy from './pages/Privacy.jsx'
 import Terms from './pages/Terms.jsx'
 import Support from './pages/Support.jsx'
+import Apply from './pages/Apply.jsx'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -31,6 +32,7 @@ export default function App() {
         <Route path="/story" element={<Story />} />
         <Route path="/makers" element={<Makers />} />
         <Route path="/careers" element={<Careers />} />
+        <Route path="/apply/:jobId" element={<Apply />} />
         <Route path="/collaborate" element={<Collaborate />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />
