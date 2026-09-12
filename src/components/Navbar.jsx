@@ -8,7 +8,6 @@ const links = [
   { to: '/story', label: 'Our Story' },
   { to: '/makers', label: 'The Makers' },
   { to: '/careers', label: 'New Chapters' },
-  { to: '/collaborate', label: 'Collaborate' },
 ]
 
 export default function Navbar() {
@@ -73,6 +72,13 @@ export default function Navbar() {
               {l.label}
             </NavLink>
           ))}
+          <Link
+            to="/collaborate"
+            onClick={() => setOpen(false)}
+            className="mt-3 border border-[#D62828]/60 px-5 py-2.5 text-center font-mono-tech text-[11px] uppercase tracking-[0.22em] text-[#F5F5F5] transition-colors duration-300 hover:bg-[#D62828] hover:text-white"
+          >
+            Initiate Protocol
+          </Link>
         </nav>
       )}
     </header>
