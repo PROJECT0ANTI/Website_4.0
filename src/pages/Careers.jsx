@@ -1,17 +1,18 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { HandCoins, Feather, Palmtree, Globe2, ArrowUpRight } from 'lucide-react'
 import Reveal, { RevealLines } from '../components/Reveal.jsx'
 import SectionLabel from '../components/SectionLabel.jsx'
+import { supabase } from '../lib/supabase.js'
 
 const categories = ['All', 'Engineering', 'Design', 'Research', 'Operations']
 
-const positions = [
-  { title: 'AI Safety Researcher', category: 'Research', location: 'Remote / Global', type: 'Full-Time' },
-  { title: 'Senior Frontend Engineer', category: 'Engineering', location: 'Remote', type: 'Full-Time' },
-  { title: 'Security Engineer', category: 'Engineering', location: 'Hybrid', type: 'Full-Time' },
-  { title: 'Product Designer', category: 'Design', location: 'Remote', type: 'Full-Time' },
-  { title: 'ML Engineer — Deepfake Detection', category: 'Research', location: 'Remote', type: 'Full-Time' },
-  { title: 'Developer Relations', category: 'Operations', location: 'Remote', type: 'Contract' },
+const fallbackPositions = [
+  { title: 'AI Safety Researcher', category: 'Research', location: 'Remote / Global' },
+  { title: 'Senior Frontend Engineer', category: 'Engineering', location: 'Remote' },
+  { title: 'Security Engineer', category: 'Engineering', location: 'Hybrid' },
+  { title: 'Product Designer', category: 'Design', location: 'Remote' },
+  { title: 'ML Engineer — Deepfake Detection', category: 'Research', location: 'Remote' },
+  { title: 'Developer Relations', category: 'Operations', location: 'Remote' },
 ]
 
 const benefits = [
@@ -23,6 +24,39 @@ const benefits = [
 
 export default function Careers() {
   const [filter, setFilter] = useState('All')
+  const [positions, setPositions] = useState(fallbackPositions)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    if (!supabase) {
+      setLoading(false)
+      return
+    }
+    let active = true
+    supabase
+      .from('jobs')
+      .select('title, department, location, description')
+      .eq('is_active', true)
+      .order('created_at', { ascending: false })
+      .then(({ data, error }) => {
+        if (!active) return
+        if (!error && data && data.length > 0) {
+          setPositions(
+            data.map((j) => ({
+              title: j.title,
+              category: j.department || 'Operations',
+              location: j.location || 'Remote',
+              description: j.description,
+            }))
+          )
+        }
+        setLoading(false)
+      })
+    return () => {
+      active = false
+    }
+  }, [])
+
   const filtered = filter === 'All' ? positions : positions.filter((p) => p.category === filter)
 
   return (
@@ -68,6 +102,11 @@ export default function Careers() {
             ))}
           </Reveal>
           <div className="mt-10 space-y-px">
+            {!loading && filtered.length === 0 && (
+              <div className="border border-white/[0.06] bg-[#0A0A0A] px-8 py-7 text-center font-mono-tech text-[11px] uppercase tracking-[0.2em] text-[#9E9E9E]">
+                No open roles in this category right now.
+              </div>
+            )}
             {filtered.map((p, i) => (
               <Reveal key={p.title} delay={i * 0.04}>
                 <div className="group flex flex-col justify-between gap-4 border border-white/[0.06] bg-[#0A0A0A] px-8 py-7 transition-colors duration-500 hover:bg-[#1A1A1A] sm:flex-row sm:items-center lg:px-12">
@@ -78,7 +117,6 @@ export default function Careers() {
                     <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 font-mono-tech text-[10px] uppercase tracking-[0.18em] text-[#9E9E9E]">
                       <span className="text-[#D62828]">{p.category}</span>
                       <span>{p.location}</span>
-                      <span>{p.type}</span>
                     </div>
                   </div>
                   <a

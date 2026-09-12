@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Phone, Mail, Users, ArrowUpRight } from 'lucide-react'
 import Reveal, { RevealLines } from '../components/Reveal.jsx'
 import SectionLabel from '../components/SectionLabel.jsx'
+import { supabase } from '../lib/supabase.js'
 
 const channels = [
   { icon: Phone, label: 'Phone 1', value: '+91 91166 65513', href: 'tel:+919116665513' },
@@ -23,13 +24,36 @@ function Field({ label, children }) {
 
 export default function Collaborate() {
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState('')
   const [form, setForm] = useState({ name: '', work: '', brief: '', email: '', phone: '', agree: false })
 
   const onChange = (key) => (e) =>
     setForm((f) => ({ ...f, [key]: e.target.type === 'checkbox' ? e.target.checked : e.target.value }))
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault()
+    setError('')
+
+    if (!supabase) {
+      setSubmitted(true)
+      return
+    }
+
+    setSubmitting(true)
+    const { error: insertError } = await supabase.from('contact_us').insert({
+      full_name: form.name,
+      company: form.work,
+      message: form.brief,
+      email: form.email,
+      phone: form.phone || null,
+    })
+    setSubmitting(false)
+
+    if (insertError) {
+      setError('Something went wrong sending your transmission. Please try again or reach out directly below.')
+      return
+    }
     setSubmitted(true)
   }
 
@@ -135,11 +159,15 @@ export default function Collaborate() {
                     </Link>
                     .
                   </label>
+                  {error && (
+                    <p className="text-sm text-[#D62828]">{error}</p>
+                  )}
                   <button
                     type="submit"
-                    className="group inline-flex items-center gap-3 bg-[#D62828] px-8 py-4 font-mono-tech text-xs uppercase tracking-[0.22em] text-white transition-colors duration-300 hover:bg-[#A31D1D]"
+                    disabled={submitting}
+                    className="group inline-flex items-center gap-3 bg-[#D62828] px-8 py-4 font-mono-tech text-xs uppercase tracking-[0.22em] text-white transition-colors duration-300 hover:bg-[#A31D1D] disabled:cursor-not-allowed disabled:opacity-60"
                   >
-                    Send Transmission
+                    {submitting ? 'Sending…' : 'Send Transmission'}
                     <ArrowUpRight size={15} className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
                   </button>
                 </form>
