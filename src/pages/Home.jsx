@@ -16,16 +16,17 @@ const projects = [
   {
     icon: Smartphone,
     index: 'P.01',
-    title: 'ANTI-0',
+    title: 'ANTIGPT',
     subtitle: 'Mobile Application',
     desc: 'A privacy-first mobile application designed to detect AI-generated media. Built for real-world use with fast on-device intelligence and optional verification.',
     tags: ['Deepfake Detection', 'On-device AI', 'Privacy First', 'Real-time Analysis'],
     meta: 'Available on iOS',
+    metaHref: 'https://apps.apple.com/us/app/anti-0/id6757922031',
   },
   {
     icon: ShieldCheck,
     index: 'P.02',
-    title: 'ANTI-AI Shield',
+    title: 'ANTITODE',
     subtitle: 'Enterprise Security Platform',
     desc: 'An enterprise-grade security platform built to predict threats, enforce governed AI decisions, and protect modern cloud infrastructure before attacks occur.',
     tags: ['Predictive Security', 'Threat Forecasting', 'Governed AI', 'Human-in-the-loop'],
@@ -142,7 +143,13 @@ export default function Home() {
                 </div>
                 <div className="mt-10 flex items-center gap-2 font-mono-tech text-[11px] uppercase tracking-[0.22em] text-[#EDEDED]">
                   <span className="h-1.5 w-1.5 rounded-full bg-[#D62828]" />
-                  {p.meta}
+                  {p.metaHref ? (
+                    <a href={p.metaHref} target="_blank" rel="noopener noreferrer" className="link-sweep">
+                      {p.meta}
+                    </a>
+                  ) : (
+                    p.meta
+                  )}
                 </div>
               </Reveal>
             ))}
