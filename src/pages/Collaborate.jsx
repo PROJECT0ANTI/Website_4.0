@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Phone, Mail, Users, ArrowUpRight } from 'lucide-react'
 import Reveal, { RevealLines } from '../components/Reveal.jsx'
 import SectionLabel from '../components/SectionLabel.jsx'
@@ -129,7 +130,15 @@ export default function Collaborate() {
                       onChange={onChange('agree')}
                       className="mt-1 h-4 w-4 accent-[#D62828]"
                     />
-                    I agree to the Privacy Policy and Terms &amp; Conditions.
+                    I agree to the{' '}
+                    <Link to="/privacy" className="link-sweep text-[#EDEDED]">
+                      Privacy Policy
+                    </Link>{' '}
+                    and{' '}
+                    <Link to="/terms" className="link-sweep text-[#EDEDED]">
+                      Terms &amp; Conditions
+                    </Link>
+                    .
                   </label>
                   <button
                     type="submit"

@@ -117,9 +117,9 @@ export default function Footer() {
               <li className="pt-4">
                 <span className="font-mono-tech text-[10px] uppercase tracking-[0.2em] text-[#9E9E9E]/60">Legal</span>
                 <div className="mt-2 flex flex-col gap-2">
-                  <a href="#" className="link-sweep hover:text-[#EDEDED]">Privacy Policy</a>
-                  <a href="#" className="link-sweep hover:text-[#EDEDED]">Terms &amp; Conditions</a>
-                  <a href="#" className="link-sweep hover:text-[#EDEDED]">App Support</a>
+                  <Link to="/privacy" className="link-sweep hover:text-[#EDEDED]">Privacy Policy</Link>
+                  <Link to="/terms" className="link-sweep hover:text-[#EDEDED]">Terms &amp; Conditions</Link>
+                  <Link to="/support" className="link-sweep hover:text-[#EDEDED]">App Support</Link>
                 </div>
               </li>
             </ul>
