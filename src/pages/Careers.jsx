@@ -142,8 +142,8 @@ export default function Careers() {
           </div>
           <Reveal delay={0.1} className="mt-10 text-center font-mono-tech text-[11px] uppercase tracking-[0.2em] text-[#9E9E9E]">
             Don't see your role? Write to{' '}
-            <a href="mailto:antiai.hr@gmail.com" className="link-sweep text-[#D62828]">
-              antiai.hr@gmail.com
+            <a href="mailto:hr@antiai.ltd" className="link-sweep text-[#D62828]">
+              hr@antiai.ltd
             </a>
           </Reveal>
         </div>
