@@ -7,10 +7,10 @@ import { supabase } from '../lib/supabase.js'
 
 const channels = [
   { icon: Phone, label: 'Phone 1', value: '+91 91166 65513', href: 'tel:+919116665513' },
-  { icon: Phone, label: 'Phone 2', value: '+91 93588 94622', href: 'tel:+919358894622' },
+  { icon: Phone, label: 'Phone 2', value: '+91 91160 20359', href: 'tel:+919358894622' },
   { icon: Mail, label: 'Business Ideas', value: 'hello@antiai.ltd', href: 'mailto:hello@antiai.ltd' },
   { icon: Mail, label: 'Press & Media', value: 'support@antiai.ltd', href: 'mailto:support@antiai.ltd' },
-  { icon: Users, label: 'Human Resource', value: 'antiai.hr@gmail.com', href: 'mailto:antiai.hr@gmail.com' },
+  { icon: Users, label: 'Human Resource', value: 'hr@antiai.ltd', href: 'mailto:hr@antiai.ltd' },
 ]
 
 function Field({ label, children }) {
