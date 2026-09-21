@@ -80,7 +80,7 @@ export default function Apply() {
 
       setSubmitted(true)
     } catch (err) {
-      setError('Something went wrong submitting your application. Please try again or email antiai.hr@gmail.com directly.')
+      setError('Something went wrong submitting your application. Please try again or email hr@antiai.ltd directly.')
     } finally {
       setSubmitting(false)
     }

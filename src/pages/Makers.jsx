@@ -1,16 +1,16 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Globe2, FlaskConical, Gem, ArrowUpRight } from 'lucide-react'
 import Reveal, { RevealLines } from '../components/Reveal.jsx'
 import SectionLabel from '../components/SectionLabel.jsx'
 
 const leadership = [
-  { initials: 'TS', name: 'Tanishq Sharma', role: 'Founder & CEO', link: 'https://www.linkedin.com/in/tanishq-shr' },
-  { initials: 'DS', name: 'Divya Sharma', role: 'Chief Manager', link: 'https://www.linkedin.com/in/divya-sharma-7297822aa' },
-  { initials: 'SP', name: 'Sharad Pandey', role: 'Director of Sales-Presales, Global Presales Solutions', link: 'https://www.linkedin.com/in/sharad-pandey-114825152' },
-  { initials: 'AD', name: 'Arpit Dogra', role: 'Chief Technical Officer', link: 'https://www.linkedin.com/in/arpit-dogra18' },
-  { initials: 'KS', name: 'Kunal Saxena', role: 'Technical Lead', link: 'https://www.linkedin.com/in/kunal-saxena-ks' },
-  { initials: 'VP', name: 'Vishal Purohit', role: 'Head of Marketing', link: 'https://www.linkedin.com/in/vishal-purohit-35338b218' },
-  { initials: 'SS', name: 'Shristi Shukla', role: 'Senior Software Developer', link: 'https://x.com/session_timeout' },
+  { initials: 'TS', name: 'Tanishq Sharma', role: 'Founder & CEO', link: 'https://www.linkedin.com/in/tanishq-shr', photo: '/team/tanishq-sharma.jpg' },
+  { initials: 'DS', name: 'Divya Sharma', role: 'Chief Manager', link: 'https://www.linkedin.com/in/divya-sharma-7297822aa', photo: '/team/divya-sharma.jpg' },
+  { initials: 'SP', name: 'Sharad Pandey', role: 'Director of Sales-Presales, Global Presales Solutions', link: 'https://www.linkedin.com/in/sharad-pandey-114825152', photo: '/team/sharad-pandey.jpg' },
+  { initials: 'AD', name: 'Arpit Dogra', role: 'Chief Technical Officer', link: 'https://www.linkedin.com/in/arpit-dogra18', photo: '/team/arpit-dogra.jpg' },
+  { initials: 'KS', name: 'Kunal Saxena', role: 'Technical Lead', link: 'https://www.linkedin.com/in/kunal-saxena-ks', photo: '/team/kunal-saxena.jpg' },
+  { initials: 'SS', name: 'Shristi Shukla', role: 'Senior Software Developer', link: 'https://x.com/session_timeout', photo: '/team/shristi-shukla.jpg' },
 ]
 
 const ethos = [
@@ -18,6 +18,25 @@ const ethos = [
   { icon: FlaskConical, title: 'Research Driven', desc: 'What began as a research initiative now spans AI safety, enterprise security, and infrastructure resilience.' },
   { icon: Gem, title: 'Craftsmanship Standard', desc: 'Systems that remain powerful, auditable, and aligned with real-world accountability — no black boxes.' },
 ]
+
+function MemberAvatar({ photo, initials }) {
+  const [failed, setFailed] = useState(false)
+  if (photo && !failed) {
+    return (
+      <img
+        src={photo}
+        alt=""
+        onError={() => setFailed(true)}
+        className="aspect-[4/5] w-full border border-[#D62828]/40 object-cover object-top"
+      />
+    )
+  }
+  return (
+    <div className="flex aspect-[4/5] w-full items-center justify-center border border-[#D62828]/40 font-display text-5xl font-bold text-[#D62828]">
+      {initials}
+    </div>
+  )
+}
 
 export default function Makers() {
   return (
@@ -47,7 +66,7 @@ export default function Makers() {
       <section className="border-t border-white/[0.06]">
         <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
           <SectionLabel index="01" text="Core Leadership" />
-          <div className="mt-14 grid gap-px bg-white/[0.06] sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-14 grid gap-px bg-white/[0.06] sm:grid-cols-2 lg:grid-cols-3">
             {leadership.map((m, i) => (
               <Reveal
                 key={m.name}
@@ -56,16 +75,15 @@ export default function Makers() {
                 href={m.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="trace-card group block bg-[#0A0A0A] p-8 transition-colors duration-300 hover:bg-[#141414]"
+                className="trace-card group block bg-[#0A0A0A] transition-colors duration-300 hover:bg-[#141414]"
               >
-                <div className="flex h-14 w-14 items-center justify-center border border-[#D62828]/40 font-display text-lg font-bold text-[#D62828]">
-                  {m.initials}
+                <MemberAvatar photo={m.photo} initials={m.initials} />
+                <div className="p-8">
+                  <h3 className="font-display text-lg font-bold text-[#F5F5F5]">{m.name}</h3>
+                  <div className="mt-2 font-mono-tech text-[10px] uppercase tracking-[0.18em] text-[#9E9E9E]">{m.role}</div>
                 </div>
-                <h3 className="mt-6 font-display text-lg font-bold text-[#F5F5F5]">{m.name}</h3>
-                <div className="mt-2 font-mono-tech text-[10px] uppercase tracking-[0.18em] text-[#9E9E9E]">{m.role}</div>
               </Reveal>
             ))}
-            <div aria-hidden="true" className="hidden bg-[#0A0A0A] lg:block" />
           </div>
           <Reveal delay={0.2} className="mt-16 text-center">
             <Link

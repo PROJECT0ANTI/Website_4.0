@@ -5,7 +5,7 @@ import Reveal, { RevealLines } from '../components/Reveal.jsx'
 import SectionLabel from '../components/SectionLabel.jsx'
 import { supabase } from '../lib/supabase.js'
 
-const categories = ['All', 'Engineering', 'Design', 'Research', 'Operations']
+const fallbackCategories = ['All', 'Engineering', 'Design', 'Research', 'Operations']
 
 const fallbackPositions = [
   { title: 'AI Safety Researcher', category: 'Research', location: 'Remote / Global' },
@@ -26,6 +26,7 @@ const benefits = [
 export default function Careers() {
   const [filter, setFilter] = useState('All')
   const [positions, setPositions] = useState(fallbackPositions)
+  const [isLive, setIsLive] = useState(false)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -51,6 +52,7 @@ export default function Careers() {
               description: j.description,
             }))
           )
+          setIsLive(true)
         }
         setLoading(false)
       })
@@ -58,6 +60,10 @@ export default function Careers() {
       active = false
     }
   }, [])
+
+  const categories = isLive
+    ? ['All', ...Array.from(new Set(positions.map((p) => p.category))).sort()]
+    : fallbackCategories
 
   const filtered = filter === 'All' ? positions : positions.filter((p) => p.category === filter)
 
@@ -110,7 +116,7 @@ export default function Careers() {
               </div>
             )}
             {filtered.map((p, i) => (
-              <Reveal key={p.title} delay={i * 0.04}>
+              <Reveal key={p.id || `${p.title}-${i}`} delay={i * 0.04}>
                 <div className="group flex flex-col justify-between gap-4 border border-white/[0.06] bg-[#0A0A0A] px-8 py-7 transition-colors duration-500 hover:bg-[#1A1A1A] sm:flex-row sm:items-center lg:px-12">
                   <div>
                     <h3 className="font-display text-lg font-bold uppercase tracking-tight text-[#F5F5F5] sm:text-xl">
@@ -130,7 +136,7 @@ export default function Careers() {
                     </Link>
                   ) : (
                     <a
-                      href="mailto:antiai.hr@gmail.com"
+                      href="mailto:hr@antiai.ltd"
                       className="link-sweep shrink-0 font-mono-tech text-[11px] uppercase tracking-[0.22em] text-[#EDEDED]"
                     >
                       Apply
