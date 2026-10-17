@@ -48,6 +48,7 @@ const socials = [
 
 const nav = [
   { to: '/', label: 'The Prologue' },
+  { href: 'https://products.antiai.ltd', label: 'Product Overview' },
   { to: '/capabilities', label: 'Capabilities' },
   { to: '/story', label: 'Our Story' },
   { to: '/makers', label: 'The Makers' },
@@ -87,13 +88,24 @@ export default function Footer() {
             <div className="font-mono-tech text-[11px] uppercase tracking-[0.25em] text-[#D62828]">Navigation</div>
             <ul className="mt-6 space-y-3">
               {nav.map((l) => (
-                <li key={l.to}>
-                  <Link
-                    className="link-sweep text-sm text-[#9E9E9E] transition-colors duration-300 hover:text-[#EDEDED]"
-                    to={l.to}
-                  >
-                    {l.label}
-                  </Link>
+                <li key={l.label}>
+                  {l.to ? (
+                    <Link
+                      className="link-sweep text-sm text-[#9E9E9E] transition-colors duration-300 hover:text-[#EDEDED]"
+                      to={l.to}
+                    >
+                      {l.label}
+                    </Link>
+                  ) : (
+                    <a
+                      className="link-sweep text-sm text-[#9E9E9E] transition-colors duration-300 hover:text-[#EDEDED]"
+                      href={l.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {l.label}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
