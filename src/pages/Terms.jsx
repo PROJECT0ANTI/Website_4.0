@@ -1,8 +1,15 @@
 import LegalPage, { LegalSection } from '../components/LegalPage.jsx'
+import SEO from '../components/SEO.jsx'
 
 export default function Terms() {
   return (
-    <LegalPage eyebrow="TRM" title="Terms & Conditions">
+    <>
+      <SEO
+        title="Terms & Conditions"
+        description="ANTI.AI terms and conditions governing the use of our website and services."
+        canonical="/terms"
+      />
+      <LegalPage eyebrow="TRM" title="Terms & Conditions">
       <p className="max-w-2xl text-base leading-relaxed text-[#9E9E9E]">
         These Terms & Conditions govern your access to and use of the Anti AI website, products, services, and
         related communications. By using this website, you agree to comply with these terms.
@@ -47,5 +54,6 @@ export default function Terms() {
         <p>These Terms & Conditions shall be governed by and interpreted in accordance with the laws of India.</p>
       </LegalSection>
     </LegalPage>
+    </>
   )
 }

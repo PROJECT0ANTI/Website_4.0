@@ -4,6 +4,7 @@ import { ShieldAlert, Server, Building2, ArrowUpRight, Plus } from 'lucide-react
 import { motion, AnimatePresence } from 'framer-motion'
 import Reveal, { RevealLines } from '../components/Reveal.jsx'
 import SectionLabel from '../components/SectionLabel.jsx'
+import SEO from '../components/SEO.jsx'
 
 const focus = [
   { icon: ShieldAlert, title: 'AI Safety', desc: 'Protecting humanity from uncontrolled AI systems.' },
@@ -68,6 +69,11 @@ function Chapter({ ch, title, body, defaultOpen = false }) {
 export default function Story() {
   return (
     <main className="relative">
+      <SEO
+        title="Our Story — Vision, Mission & Ethical AI"
+        description="Learn how ANTI.AI was founded to redefine technology through responsible AI — protecting humanity from uncontrolled systems while empowering enterprises."
+        canonical="/story"
+      />
       <section className="bg-blueprint px-6 pb-24 pt-44 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <Reveal className="flex items-center gap-4">

@@ -4,6 +4,31 @@ import Orb from '../components/Orb.jsx'
 import Marquee from '../components/Marquee.jsx'
 import Reveal, { RevealLines } from '../components/Reveal.jsx'
 import SectionLabel from '../components/SectionLabel.jsx'
+import SEO from '../components/SEO.jsx'
+
+const HOME_JSONLD = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'AntiGPT',
+    applicationCategory: 'SecurityApplication',
+    operatingSystem: 'iOS',
+    description: 'A privacy-first mobile application designed to detect AI-generated media with fast on-device intelligence and optional verification.',
+    url: 'https://products.antiai.ltd/products/antigpt',
+    author: { '@type': 'Organization', name: 'ANTI.AI' },
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'Antitode',
+    applicationCategory: 'SecurityApplication',
+    operatingSystem: 'Web',
+    description: 'An enterprise-grade security platform built to predict threats, enforce governed AI decisions, and protect modern cloud infrastructure before attacks occur.',
+    url: 'https://products.antiai.ltd/products/antitode',
+    author: { '@type': 'Organization', name: 'ANTI.AI' },
+  },
+]
 
 const stats = [
   { value: '32+', label: 'Certified Professionals' },
@@ -51,6 +76,12 @@ const outcomes = [
 export default function Home() {
   return (
     <main className="relative">
+      <SEO
+        title="ANTI.AI — Human-Governed AI Software Company"
+        description="ANTI.AI builds responsible, human-governed artificial intelligence. From deepfake detection to enterprise security — powerful, auditable, and aligned with real-world accountability."
+        canonical="/"
+        jsonLd={HOME_JSONLD}
+      />
       {/* HERO */}
       <section className="bg-blueprint relative flex min-h-screen flex-col justify-center overflow-hidden px-6 pt-28 lg:px-10">
         <Orb />

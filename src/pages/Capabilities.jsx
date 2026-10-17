@@ -2,6 +2,7 @@ import { Cpu, CodeXml, Smartphone, Cloud, Zap, Gauge, BadgeDollarSign, Eye, Arro
 import { Link } from 'react-router-dom'
 import Reveal, { RevealLines } from '../components/Reveal.jsx'
 import SectionLabel from '../components/SectionLabel.jsx'
+import SEO from '../components/SEO.jsx'
 
 const services = [
   {
@@ -66,6 +67,11 @@ const portfolio = [
 export default function Capabilities() {
   return (
     <main className="relative">
+      <SEO
+        title="Capabilities — AI Development, Web, Mobile & Cloud"
+        description="AI product development, high-performance web platforms, mobile apps, and defence-grade cloud infrastructure. Explore what ANTI.AI builds."
+        canonical="/capabilities"
+      />
       <section className="bg-blueprint px-6 pb-24 pt-44 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <Reveal className="flex items-center gap-4">

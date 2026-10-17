@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Phone, Mail, Users, ArrowUpRight } from 'lucide-react'
 import Reveal, { RevealLines } from '../components/Reveal.jsx'
 import SectionLabel from '../components/SectionLabel.jsx'
+import SEO from '../components/SEO.jsx'
 import { supabase } from '../lib/supabase.js'
 
 const channels = [
@@ -59,6 +60,11 @@ export default function Collaborate() {
 
   return (
     <main className="relative">
+      <SEO
+        title="Collaborate — Start a Project"
+        description="Ready to build something extraordinary? Contact ANTI.AI for AI development, enterprise security, and cloud infrastructure projects."
+        canonical="/collaborate"
+      />
       <section className="bg-blueprint px-6 pb-24 pt-44 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <Reveal className="flex items-center gap-4">
