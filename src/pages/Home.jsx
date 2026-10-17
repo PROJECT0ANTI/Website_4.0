@@ -21,7 +21,7 @@ const projects = [
     desc: 'A privacy-first mobile application designed to detect AI-generated media. Built for real-world use with fast on-device intelligence and optional verification.',
     tags: ['Deepfake Detection', 'On-device AI', 'Privacy First', 'Real-time Analysis'],
     meta: 'Available on iOS',
-    metaHref: 'https://apps.apple.com/us/app/anti-0/id6757922031',
+    href: 'https://products.antiai.ltd/products/antigpt',
   },
   {
     icon: ShieldCheck,
@@ -31,6 +31,7 @@ const projects = [
     desc: 'An enterprise-grade security platform built to predict threats, enforce governed AI decisions, and protect modern cloud infrastructure before attacks occur.',
     tags: ['Predictive Security', 'Threat Forecasting', 'Governed AI', 'Human-in-the-loop'],
     meta: 'Enterprise Grade',
+    href: 'https://products.antiai.ltd/products/antitode',
   },
 ]
 
@@ -121,10 +122,24 @@ export default function Home() {
           </Reveal>
           <div className="mt-16 grid gap-px bg-white/[0.06] lg:grid-cols-2">
             {projects.map((p, i) => (
-              <Reveal key={p.title} delay={i * 0.08} className="trace-card group bg-[#0A0A0A] p-10 lg:p-14">
+              <Reveal
+                key={p.title}
+                delay={i * 0.08}
+                as="a"
+                href={p.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="trace-card group block cursor-pointer bg-[#0A0A0A] p-10 transition-colors duration-300 hover:bg-[#121212] lg:p-14"
+              >
                 <div className="flex items-start justify-between">
                   <p.icon size={28} strokeWidth={1.5} className="text-[#D62828]" />
-                  <span className="font-mono-tech text-[11px] tracking-[0.25em] text-[#9E9E9E]/60">{p.index}</span>
+                  <div className="flex items-center gap-3">
+                    <span className="font-mono-tech text-[11px] tracking-[0.25em] text-[#9E9E9E]/60">{p.index}</span>
+                    <ArrowUpRight
+                      size={18}
+                      className="text-[#9E9E9E]/60 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-[#D62828]"
+                    />
+                  </div>
                 </div>
                 <h3 className="mt-10 font-display text-4xl font-extrabold uppercase tracking-tight text-[#F5F5F5] lg:text-5xl">
                   {p.title}
@@ -143,13 +158,7 @@ export default function Home() {
                 </div>
                 <div className="mt-10 flex items-center gap-2 font-mono-tech text-[11px] uppercase tracking-[0.22em] text-[#EDEDED]">
                   <span className="h-1.5 w-1.5 rounded-full bg-[#D62828]" />
-                  {p.metaHref ? (
-                    <a href={p.metaHref} target="_blank" rel="noopener noreferrer" className="link-sweep">
-                      {p.meta}
-                    </a>
-                  ) : (
-                    p.meta
-                  )}
+                  <span>{p.meta}</span>
                 </div>
               </Reveal>
             ))}
