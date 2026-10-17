@@ -1,13 +1,20 @@
 import { Link } from 'react-router-dom'
 import LegalPage, { LegalSection } from '../components/LegalPage.jsx'
+import SEO from '../components/SEO.jsx'
 
 export default function Support() {
   return (
-    <LegalPage
-      eyebrow="SUP"
-      title="App Support"
-      intro="If you need help with the ANTI AI mobile application, we're here to support you."
-    >
+    <>
+      <SEO
+        title="App Support"
+        description="Get help with ANTI.AI products. Contact our support team for assistance with AntiGPT and other applications."
+        canonical="/support"
+      />
+      <LegalPage
+        eyebrow="SUP"
+        title="App Support"
+        intro="If you need help with the ANTI AI mobile application, we're here to support you."
+      >
       <ul className="max-w-2xl space-y-2.5">
         {[
           'Account or login issues',
@@ -39,5 +46,6 @@ export default function Support() {
         </p>
       </LegalSection>
     </LegalPage>
+    </>
   )
 }

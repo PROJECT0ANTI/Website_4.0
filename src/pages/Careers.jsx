@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { HandCoins, Feather, Palmtree, Globe2, ArrowUpRight } from 'lucide-react'
 import Reveal, { RevealLines } from '../components/Reveal.jsx'
 import SectionLabel from '../components/SectionLabel.jsx'
+import SEO from '../components/SEO.jsx'
 import { supabase } from '../lib/supabase.js'
 
 const fallbackCategories = ['All', 'Engineering', 'Design', 'Research', 'Operations']
@@ -67,8 +68,35 @@ export default function Careers() {
 
   const filtered = filter === 'All' ? positions : positions.filter((p) => p.category === filter)
 
+  const jobSchema = positions.map((p) => ({
+    '@context': 'https://schema.org',
+    '@type': 'JobPosting',
+    title: p.title,
+    description: p.description || `${p.title} position at ANTI.AI. Work at the intersection of artificial intelligence, security, and human-governed systems.`,
+    hiringOrganization: {
+      '@type': 'Organization',
+      name: 'ANTI.AI',
+      sameAs: 'https://antiai.ltd',
+      logo: 'https://antiai.ltd/logo-512.png',
+    },
+    jobLocationType: p.location?.toLowerCase().includes('remote') ? 'TELECOMMUTE' : undefined,
+    applicantLocationRequirements: {
+      '@type': 'Country',
+      name: 'IN',
+    },
+    employmentType: 'FULL_TIME',
+    datePosted: '2026-10-01',
+    validThrough: '2027-12-31',
+  }))
+
   return (
     <main className="relative">
+      <SEO
+        title="Careers — Join the Mission"
+        description="Open positions at ANTI.AI. We're hiring AI safety researchers, engineers, and designers. Remote-first, global, zero bureaucracy."
+        canonical="/careers"
+        jsonLd={jobSchema}
+      />
       <section className="bg-blueprint px-6 pb-24 pt-44 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <Reveal className="flex items-center gap-4">

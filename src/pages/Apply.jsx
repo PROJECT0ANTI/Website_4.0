@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { ArrowUpRight, UploadCloud, CheckCircle2 } from 'lucide-react'
 import Reveal, { RevealLines } from '../components/Reveal.jsx'
+import SEO from '../components/SEO.jsx'
 import { supabase } from '../lib/supabase.js'
 
 const whyWorkWithUs = [
@@ -88,6 +89,11 @@ export default function Apply() {
 
   return (
     <main className="relative">
+      <SEO
+        title={job?.title ? `Apply: ${job.title}` : 'Apply for Open Role'}
+        description={`Apply for ${job?.title ? `${job.title} (${job.department || 'Operations'})` : 'open roles'} at ANTI.AI — building responsible, human-governed AI systems.`}
+        canonical={`/apply/${jobId}`}
+      />
       <section className="bg-blueprint px-6 pb-24 pt-44 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <Reveal className="flex items-center gap-4">

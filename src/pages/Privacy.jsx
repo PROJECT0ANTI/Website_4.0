@@ -1,8 +1,15 @@
 import LegalPage, { LegalSection } from '../components/LegalPage.jsx'
+import SEO from '../components/SEO.jsx'
 
 export default function Privacy() {
   return (
-    <LegalPage eyebrow="PRV" title="Privacy Policy">
+    <>
+      <SEO
+        title="Privacy Policy"
+        description="ANTI.AI privacy policy. Learn how we collect, use, and protect your personal information."
+        canonical="/privacy"
+      />
+      <LegalPage eyebrow="PRV" title="Privacy Policy">
       <p className="max-w-2xl text-base leading-relaxed text-[#9E9E9E]">
         Anti AI ("we", "our", "us") respects your privacy and is committed to protecting the personal information
         you share with us. This Privacy Policy explains how we collect, use, disclose, and safeguard your
@@ -52,5 +59,6 @@ export default function Privacy() {
         </p>
       </LegalSection>
     </LegalPage>
+    </>
   )
 }

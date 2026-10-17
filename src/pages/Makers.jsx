@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Globe2, FlaskConical, Gem, ArrowUpRight } from 'lucide-react'
 import Reveal, { RevealLines } from '../components/Reveal.jsx'
 import SectionLabel from '../components/SectionLabel.jsx'
+import SEO from '../components/SEO.jsx'
 
 const leadership = [
   { initials: 'TS', name: 'Tanishq Sharma', role: 'Founder & CEO', link: 'https://www.linkedin.com/in/tanishq-shr', photo: '/team/tanishq-sharma.jpg' },
@@ -19,13 +20,13 @@ const ethos = [
   { icon: Gem, title: 'Craftsmanship Standard', desc: 'Systems that remain powerful, auditable, and aligned with real-world accountability — no black boxes.' },
 ]
 
-function MemberAvatar({ photo, initials }) {
+function MemberAvatar({ photo, initials, name, role }) {
   const [failed, setFailed] = useState(false)
   if (photo && !failed) {
     return (
       <img
         src={photo}
-        alt=""
+        alt={`${name || initials} — ${role || 'Leadership'} at ANTI.AI`}
         onError={() => setFailed(true)}
         className="aspect-[4/5] w-full border border-[#D62828]/40 object-cover object-top"
       />
@@ -41,6 +42,11 @@ function MemberAvatar({ photo, initials }) {
 export default function Makers() {
   return (
     <main className="relative">
+      <SEO
+        title="The Makers — Leadership Team"
+        description="Meet the people behind ANTI.AI — a global team of engineers, researchers, and designers building human-governed AI systems."
+        canonical="/makers"
+      />
       <section className="bg-blueprint px-6 pb-24 pt-44 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <Reveal className="flex items-center gap-4">
@@ -77,7 +83,7 @@ export default function Makers() {
                 rel="noopener noreferrer"
                 className="trace-card group block bg-[#0A0A0A] transition-colors duration-300 hover:bg-[#141414]"
               >
-                <MemberAvatar photo={m.photo} initials={m.initials} />
+                <MemberAvatar photo={m.photo} initials={m.initials} name={m.name} role={m.role} />
                 <div className="p-8">
                   <h3 className="font-display text-lg font-bold text-[#F5F5F5]">{m.name}</h3>
                   <div className="mt-2 font-mono-tech text-[10px] uppercase tracking-[0.18em] text-[#9E9E9E]">{m.role}</div>
