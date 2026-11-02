@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Phone, Mail, Users, ArrowUpRight } from 'lucide-react'
 import Reveal, { RevealLines } from '../components/Reveal.jsx'
 import SectionLabel from '../components/SectionLabel.jsx'
-import { supabase } from '../lib/supabase.js'
+import { apiReady, submitContact } from '../lib/api.js'
 
 const channels = [
   { icon: Phone, label: 'Phone 1', value: '+91 91166 65513', href: 'tel:+919116665513' },
@@ -35,19 +35,25 @@ export default function Collaborate() {
     e.preventDefault()
     setError('')
 
-    if (!supabase) {
-      setSubmitted(true)
+    if (!apiReady) {
+      setError('Messages are temporarily unavailable. Please reach out directly below.')
       return
     }
 
     setSubmitting(true)
-    const { error: insertError } = await supabase.from('contact_us').insert({
-      full_name: form.name,
-      company: form.work,
-      message: form.brief,
-      email: form.email,
-      phone: form.phone || null,
-    })
+    let insertError = null
+    try {
+      await submitContact({
+        name: form.name,
+        work: form.work,
+        brief: form.brief,
+        email: form.email,
+        phone: form.phone || '',
+        website: '', // spam trap, must stay empty
+      })
+    } catch (err) {
+      insertError = err
+    }
     setSubmitting(false)
 
     if (insertError) {
