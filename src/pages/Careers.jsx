@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { HandCoins, Feather, Palmtree, Globe2, ArrowUpRight } from 'lucide-react'
 import Reveal, { RevealLines } from '../components/Reveal.jsx'
 import SectionLabel from '../components/SectionLabel.jsx'
-import { supabase } from '../lib/supabase.js'
+import { apiReady, getJobs } from '../lib/api.js'
 
 const fallbackCategories = ['All', 'Engineering', 'Design', 'Research', 'Operations']
 
@@ -30,19 +30,15 @@ export default function Careers() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    if (!supabase) {
+    if (!apiReady) {
       setLoading(false)
       return
     }
     let active = true
-    supabase
-      .from('jobs')
-      .select('id, title, department, location, description')
-      .eq('is_active', true)
-      .order('created_at', { ascending: false })
-      .then(({ data, error }) => {
+    getJobs()
+      .then((data) => {
         if (!active) return
-        if (!error && data && data.length > 0) {
+        if (data && data.length > 0) {
           setPositions(
             data.map((j) => ({
               id: j.id,
@@ -54,7 +50,10 @@ export default function Careers() {
           )
           setIsLive(true)
         }
-        setLoading(false)
+      })
+      .catch(() => {})
+      .finally(() => {
+        if (active) setLoading(false)
       })
     return () => {
       active = false

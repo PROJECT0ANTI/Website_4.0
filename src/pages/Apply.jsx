@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { ArrowUpRight, UploadCloud, CheckCircle2 } from 'lucide-react'
 import Reveal, { RevealLines } from '../components/Reveal.jsx'
-import { supabase } from '../lib/supabase.js'
+import { apiReady, getJob, submitApplication } from '../lib/api.js'
 
 const whyWorkWithUs = [
   'Build AI systems that are accountable and human-governed',
@@ -24,20 +24,18 @@ export default function Apply() {
   const [error, setError] = useState('')
 
   useEffect(() => {
-    if (!supabase || !jobId) {
+    if (!apiReady || !jobId) {
       setJobLoading(false)
       return
     }
     let active = true
-    supabase
-      .from('jobs')
-      .select('id, title, department, location')
-      .eq('id', jobId)
-      .maybeSingle()
-      .then(({ data }) => {
-        if (!active) return
-        if (data) setJob(data)
-        setJobLoading(false)
+    getJob(jobId)
+      .then((data) => {
+        if (active && data) setJob(data)
+      })
+      .catch(() => {})
+      .finally(() => {
+        if (active) setJobLoading(false)
       })
     return () => {
       active = false
@@ -50,37 +48,30 @@ export default function Apply() {
     e.preventDefault()
     setError('')
 
-    if (!supabase) {
-      setSubmitted(true)
+    if (!apiReady) {
+      setError('Applications are temporarily unavailable. Please email hr@antiai.ltd directly.')
       return
     }
 
     setSubmitting(true)
     try {
-      let resumeUrl = null
-      if (resumeFile) {
-        const ext = resumeFile.name.split('.').pop()
-        const path = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`
-        const { error: uploadError } = await supabase.storage.from('resumes').upload(path, resumeFile)
-        if (uploadError) throw uploadError
-        const { data: pub } = supabase.storage.from('resumes').getPublicUrl(path)
-        resumeUrl = pub?.publicUrl || null
-      }
-
-      const { error: insertError } = await supabase.from('applications').insert({
-        job_id: jobId || null,
-        name: form.name,
-        applicant_name: form.name,
-        email: form.email,
-        phone: form.phone || null,
-        resume_url: resumeUrl,
-        cover_letter: form.cover || null,
-      })
-      if (insertError) throw insertError
+      const body = new FormData()
+      if (jobId) body.append('job_id', jobId)
+      body.append('name', form.name)
+      body.append('email', form.email)
+      body.append('phone', form.phone || '')
+      body.append('cover', form.cover || '')
+      body.append('website', '') // spam trap, must stay empty
+      if (resumeFile) body.append('resume', resumeFile)
+      await submitApplication(body)
 
       setSubmitted(true)
     } catch (err) {
-      setError('Something went wrong submitting your application. Please try again or email hr@antiai.ltd directly.')
+      setError(
+        err?.message && !/^Request failed|Failed to fetch|NetworkError/i.test(err.message)
+          ? err.message
+          : 'Something went wrong submitting your application. Please try again or email hr@antiai.ltd directly.'
+      )
     } finally {
       setSubmitting(false)
     }
